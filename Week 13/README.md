@@ -1,2 +1,4 @@
-# Computer-As-A-Medium
+Computer-As-A-Medium
+#Week 13
+===
 
