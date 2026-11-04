@@ -10,18 +10,19 @@ public class Player : MonoBehaviour
     //3. variable name: camelCase
     //4. value: optional
 
-    private float playerSpeed;
+    [SerializeField] private float playerSpeed;
     private float horizontalInput;
     private float verticalInput;
 
     private float horizontalScreenLimit = 9.5f;
-    private float verticalScreenLimit = 6.5f;
+    private float xMin = -3.5f;
+    private float xMax = 0f;
 
     public GameObject bulletPrefab;
 
     void Start()
     {
-        playerSpeed = 6f;
+        
         //This function is called at the start of the game
         
     }
@@ -55,11 +56,11 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x * -1, transform.position.y, 0);
         }
-        //Player leaves the screen vertically
-        if(transform.position.y > verticalScreenLimit || transform.position.y <= -verticalScreenLimit)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y * -1, 0);
-        }
+        //stop player from leaving vertical bounds
+        float clampedY = Mathf.Clamp(transform.position.y, xMin, xMax);
+
+        transform.position = new Vector2(transform.position.x, clampedY);
+
     }
 
 }
