@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
         //if the player presses the SPACE key, create a projectile
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(bulletPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+            Instantiate(bulletPrefab, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
         }
     }
 
