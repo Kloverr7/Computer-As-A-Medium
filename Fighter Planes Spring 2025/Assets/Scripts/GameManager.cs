@@ -11,11 +11,13 @@ public class GameManager : MonoBehaviour
     public GameObject enemyTwoPrefab;
     public GameObject coinPrefab;
     public int score;
+    private AudioSource audioSource;
     [SerializeField] private TMP_Text scoreText;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         InvokeRepeating("CreateEnemyOne", 1, 2);
         InvokeRepeating("CreateEnemyTwo", 1, 7);
         InvokeRepeating("CreateCoin", 1, 5);
@@ -38,5 +40,10 @@ public class GameManager : MonoBehaviour
     void CreateCoin()
     {
         Instantiate(coinPrefab, new Vector3(Random.Range(-9f, 9f), 6.5f, 0), Quaternion.identity);
+    }
+
+    public void PlaySound(AudioClip sound, float vol)
+    {
+        audioSource.PlayOneShot(sound, vol);
     }
 }

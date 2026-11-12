@@ -120,6 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4df0b163796ad469299ebbe8c3ede5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  coinSound: {fileID: 8300000, guid: aaced15e5a5aa3d4b934aa989950fd6b, type: 3}
 --- !u!58 &383641712773811437
 CircleCollider2D:
   m_ObjectHideFlags: 0

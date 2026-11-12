@@ -5,6 +5,7 @@ using UnityEngine;
 public class CoinBehave : MonoBehaviour
 {
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private AudioClip coinSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,9 +26,11 @@ public class CoinBehave : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            gameManager.PlaySound(coinSound, 1f);
             if(gameManager != null)
                 gameManager.score++;
+            
+            Destroy(gameObject);
         }
     }
 }

@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     //4. value: optional
 
     [SerializeField] private float playerSpeed;
+    [SerializeField] private GameManager gameManager;
+    [SerializeField] private AudioClip bulletSound;
     private float horizontalInput;
     private float verticalInput;
 
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             Instantiate(bulletPrefab, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+            gameManager.PlaySound(bulletSound, 0.5f);
         }
     }
 
