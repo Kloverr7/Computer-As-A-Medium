@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public float verticalScreenSize;
 
     // Start is called before the first frame update
+    //making changes
     void Start()
     {
         horizontalScreenSize = 10f;
@@ -36,12 +37,12 @@ public class GameManager : MonoBehaviour
         InvokeRepeating("CreateCoin", 1, 5);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-       scoreText.text = "Score: " + score;
-    }
-
+   // Update is called once per frame
+// Updates the UI to display the player's current score
+void Update()
+{
+   scoreText.text = "Score: " + score;
+}
     void CreateEnemyOne()
     {
         Instantiate(enemyOnePrefab, new Vector3(Random.Range(-9f, 9f), 6.5f, 0), Quaternion.identity);
