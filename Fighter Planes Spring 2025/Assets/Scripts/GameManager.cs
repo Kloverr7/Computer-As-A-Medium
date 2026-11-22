@@ -13,10 +13,23 @@ public class GameManager : MonoBehaviour
     public int score;
     private AudioSource audioSource;
     [SerializeField] private TMP_Text scoreText;
+    
+    public GameObject playerPrefab;
+    public GameObject cloudPrefab;
+
+    public TextMeshProUGUI livesText;
+
+    public float horizontalScreenSize;
+    public float verticalScreenSize;
 
     // Start is called before the first frame update
     void Start()
     {
+        horizontalScreenSize = 10f;
+        verticalScreenSize = 6.5f;
+        score = 0;
+        Instantiate(playerPrefab, transform.position, Quaternion.identity);
+        CreateSky();
         audioSource = GetComponent<AudioSource>();
         InvokeRepeating("CreateEnemyOne", 1, 2);
         InvokeRepeating("CreateEnemyTwo", 1, 7);
@@ -46,4 +59,24 @@ public class GameManager : MonoBehaviour
     {
         audioSource.PlayOneShot(sound, vol);
     }
+
+    void CreateSky()
+    {
+        for (int i = 0; i < 30; i++)
+        {
+            Instantiate(cloudPrefab, new Vector3(Random.Range(-horizontalScreenSize, horizontalScreenSize), Random.Range(-verticalScreenSize, verticalScreenSize), 0), Quaternion.identity);
+        }
+        
+    }
+
+    public void ChangeLivesText (int currentLives)
+    {
+        livesText.text = "Lives: " + currentLives;
+    }
+
+    public void AddScore(int earnedScore)
+    {
+        score = score + earnedScore;
+    }
 }
+

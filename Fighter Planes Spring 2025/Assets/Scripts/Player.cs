@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //how to define a variable
-    //1. access modifier: public or private
-    //2. data type: int, float, bool, string
-    //3. variable name: camelCase
-    //4. value: optional
 
     [SerializeField] private float playerSpeed;
     [SerializeField] private GameManager gameManager;
@@ -21,25 +16,26 @@ public class Player : MonoBehaviour
     private float xMax = 0f;
 
     public GameObject bulletPrefab;
+    public GameObject explosionPrefab;
+
+    public int lives;
 
     void Start()
     {
-        
-        //This function is called at the start of the game
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager.ChangeLivesText(lives);
+        lives = 3;
         
     }
 
     void Update()
     {
-        //This function is called every frame; 60 frames/second
         Movement();
         Shooting();
-
     }
 
     void Shooting()
     {
-        //if the player presses the SPACE key, create a projectile
         if(Input.GetKeyDown(KeyCode.Space))
         {
             Instantiate(bulletPrefab, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
@@ -64,6 +60,19 @@ public class Player : MonoBehaviour
 
         transform.position = new Vector2(transform.position.x, clampedY);
 
+    }
+
+    public void LoseALife()
+    {
+        lives = lives - 1;
+        lives -= 1;
+        lives--;
+        gameManager.ChangeLivesText(lives);
+        if (lives == 0)
+        {
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
+        }
     }
 
 }

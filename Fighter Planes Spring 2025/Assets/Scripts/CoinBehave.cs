@@ -28,7 +28,7 @@ public class CoinBehave : MonoBehaviour
         {
             gameManager.PlaySound(coinSound, 1f);
             if(gameManager != null)
-                gameManager.score++;
+                gameManager.AddScore(1);
             
             Destroy(gameObject);
         }
