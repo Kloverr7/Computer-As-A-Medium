@@ -84,6 +84,7 @@ public class Player : MonoBehaviour
             gameManager.PlaySound(powerdownSound, 0.25f);
             shield.SetActive(false);
             gameManager.ManagePowerupText(0);
+            isShielded = false;
         }
     }
 
