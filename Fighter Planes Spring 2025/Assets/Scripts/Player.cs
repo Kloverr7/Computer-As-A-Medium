@@ -8,8 +8,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float playerSpeed;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private AudioClip bulletSound;
+    public AudioClip powerupSound;
+    public AudioClip powerdownSound;
     private float horizontalInput;
     private float verticalInput;
+    [SerializeField] private GameObject shield;
 
     private float horizontalScreenLimit = 9.5f;
     private float xMin = -3.5f;
@@ -20,12 +23,13 @@ public class Player : MonoBehaviour
 
     public int lives;
 
+    private bool isShielded;
+
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        gameManager.ChangeLivesText(lives);
         lives = 3;
-        
+        gameManager.ChangeLivesText(lives);
     }
 
     void Update()
@@ -33,6 +37,7 @@ public class Player : MonoBehaviour
         Movement();
         Shooting();
     }
+
 
     void Shooting()
     {
@@ -64,8 +69,8 @@ public class Player : MonoBehaviour
 
     public void LoseALife()
     {
-        lives = lives - 1;
-        lives -= 1;
+        if(!isShielded)
+        {
         lives--;
         gameManager.ChangeLivesText(lives);
         if (lives == 0)
@@ -73,6 +78,26 @@ public class Player : MonoBehaviour
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
+        }
+        else
+        {
+            gameManager.PlaySound(powerdownSound, 0.25f);
+            shield.SetActive(false);
+            gameManager.ManagePowerupText(0);
+        }
     }
 
+
+    private void OnTriggerEnter2D(Collider2D whatDidIHit)
+    {
+        if (whatDidIHit.tag == "Powerup")
+        {
+            Destroy(whatDidIHit.gameObject);
+            gameManager.PlaySound(powerupSound, 0.5f);
+            gameManager.ManagePowerupText(4);
+            shield.SetActive(true);
+            isShielded = true;
+        }
+    }
 }
+

@@ -183,6 +183,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 6570761253162121973, guid: ecc354d15a3329c4e8764af8abeb06bd, type: 3}
+  audioSource: {fileID: 0}
+  explosionSound: {fileID: 8300000, guid: b5f5f907fe5e24247a9b196623a1d8c8, type: 3}
+  isDefault: 1
 --- !u!58 &1534071980719227187
 CircleCollider2D:
   m_ObjectHideFlags: 0

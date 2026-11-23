@@ -6,14 +6,9 @@ public class Enemy2 : MonoBehaviour
 {
     private float xBound = 8.3f;
     private bool movingRight;
-    public GameObject explosionPrefab;
-    private GameManager gameManager;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+
+
 
     // Update is called once per frame
     void Update()
@@ -35,22 +30,6 @@ public class Enemy2 : MonoBehaviour
 
         if (transform.position.y < -6.5f)
         {
-            Destroy(this.gameObject);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D whatDidIHit)
-    {
-        if(whatDidIHit.tag == "Player")
-        {
-            whatDidIHit.GetComponent<Player>().LoseALife();
-            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
-        } else if(whatDidIHit.tag == "Weapons")
-        {
-            Destroy(whatDidIHit.gameObject);
-            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            gameManager.AddScore(5);
             Destroy(this.gameObject);
         }
     }

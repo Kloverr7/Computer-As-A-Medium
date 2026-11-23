@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI livesText;
 
+    public GameObject powerupPrefab;
+    public TextMeshProUGUI powerupText;
+
     public float horizontalScreenSize;
     public float verticalScreenSize;
 
@@ -35,6 +38,8 @@ public class GameManager : MonoBehaviour
         InvokeRepeating("CreateEnemyOne", 1, 2);
         InvokeRepeating("CreateEnemyTwo", 1, 7);
         InvokeRepeating("CreateCoin", 1, 5);
+        StartCoroutine(SpawnPowerup());
+        powerupText.text = "No powerups yet!";
     }
 
    // Update is called once per frame
@@ -79,5 +84,36 @@ void Update()
     {
         score = score + earnedScore;
     }
+
+    IEnumerator SpawnPowerup()
+    {
+        float spawnTime = Random.Range(3, 5);
+        yield return new WaitForSeconds(spawnTime);
+        CreatePowerup();
+        StartCoroutine(SpawnPowerup());
+    }
+
+    void CreatePowerup()
+    {
+        Instantiate(powerupPrefab, new Vector3(Random.Range(-horizontalScreenSize * 0.8f, horizontalScreenSize * 0.8f), verticalScreenSize, 0), Quaternion.identity);
+    }
+
+
+    public void ManagePowerupText(int powerupType)
+    {
+        switch (powerupType)
+        {
+            case 1:
+                powerupText.text = "Speed!";
+                break;
+            case 4:
+                powerupText.text = "Shield!";
+                break;
+            default:
+                powerupText.text = "No powerups yet!";
+                break;
+        }
+    }
+
 }
 

@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 1093943610834811674}
   - component: {fileID: 2890442251850117242}
   - component: {fileID: 8484192991203114853}
+  - component: {fileID: -8899326618957459341}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Untagged
@@ -218,3 +219,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-8899326618957459341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3779247235234087261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed70b92885deda43a25c386d6b3788d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 6570761253162121973, guid: ecc354d15a3329c4e8764af8abeb06bd, type: 3}
+  audioSource: {fileID: 0}
+  explosionSound: {fileID: 8300000, guid: b5f5f907fe5e24247a9b196623a1d8c8, type: 3}
+  isDefault: 0
